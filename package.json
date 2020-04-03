@@ -21,6 +21,6 @@
     "hexo-server": "^1.0.0"
   },
   "hexo": {
-    "version": ""
+    "version": "4.2.0"
   }
 }
