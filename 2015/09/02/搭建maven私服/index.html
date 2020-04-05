@@ -1,0 +1,332 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>搭建 maven 私服--by nexus | King デデデ</title>
+  <meta name="author" content="void-soul">
+  
+  <meta name="description" content="nexus 可以代替 maven 的中央仓库，在其中发布内部模块、代理中央仓库，并可以分组管理模块。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="搭建 maven 私服--by nexus"/>
+  <meta property="og:site_name" content="King デデデ"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="King デデデ" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">King デデデ</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> 搭建 maven 私服--by nexus</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> nexus 可以代替 maven 的中央仓库，在其中发布内部模块、代理中央仓库，并可以分组管理模块。
+		 </div> <!-- alert -->
+	  		
+
+	  <h1 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h1><h2 id="版本介绍与下载"><a href="#版本介绍与下载" class="headerlink" title="版本介绍与下载"></a>版本介绍与下载</h2><p>官网： <a href="http://www.sonatype.org/nexus/" target="_blank" rel="noopener">http://www.sonatype.org/nexus/</a><br>OSS、Pro、Pro+、Lifecycle、Auditor 版本，各版本区别可参考：<a href="http://www.sonatype.com/nexus/try-compare-buy/compare" target="_blank" rel="noopener">版本比较</a><br>基本的仓库管理（不带权限分配）已经足够使用，所以使用 OSS 版。<br><a href="https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-latest-bundle.zip" target="_blank" rel="noopener">下载地址</a><br>注：浏览器里无法下载，应该是大陆 IP 被屏蔽了，使用离线下载工具即可。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>下载后的压缩包上传至 linux 服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span></span><br><span class="line">unzip nexus-latest-bundle.zip <span class="comment">#解压</span></span><br><span class="line">rm nexus-latest-bundle.zip <span class="comment">#删除</span></span><br><span class="line">y</span><br><span class="line"><span class="built_in">cd</span> nexus-2.11.2-06/conf <span class="comment">#准备修改端口配置信息</span></span><br><span class="line">vi nexus.properties <span class="comment">#这里端口改为8000；</span></span><br><span class="line"><span class="built_in">cd</span> ../bin/</span><br><span class="line">sh nexus start</span><br></pre></td></tr></table></figure>
+
+<p>此时提示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">****************************************</span><br><span class="line">WARNING - NOT RECOMMENDED TO RUN AS ROOT</span><br><span class="line">****************************************</span><br><span class="line">If you insist running as root, <span class="keyword">then</span> <span class="built_in">set</span> the environment variable RUN_AS_USER=root before running this script.</span><br></pre></td></tr></table></figure>
+
+<p>输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> RUN_AS_USER=root</span><br></pre></td></tr></table></figure>
+
+<p>此时执行就 OK 了，想永久赋予权限，可以：<br>vi /etc/profile 加入 export RUN_AS_USER=root<br>执行结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">****************************************</span><br><span class="line">WARNING - NOT RECOMMENDED TO RUN AS ROOT</span><br><span class="line">****************************************</span><br><span class="line">Starting Nexus OSS...</span><br><span class="line">Started Nexus OSS.</span><br></pre></td></tr></table></figure>
+
+<p>打开地址：<a href="http://ip:8000/nexus" target="_blank" rel="noopener">http://ip:8000/nexus</a>;<br>点击 login，u/p：admin/admin123</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>nexus 包含代理仓库、宿主仓库、仓库组等。</p>
+<p>仓库分为 4 种类型，分别是 group（分组）、hosted（宿主）、proxy（代理）、virtual（虚拟），仓库的类型是 maven1 或者 maven2，此外仓库还有个 policy 属性（策略），表示该仓库为发布（release）版本或者快照（snapshot），最后两列是仓库的状态和路径，图标列表示仓库的健康状态。<br>maven1 已经很少使用，同时 virtual 也是为了将 maven2 格式化为 maven1，因此也不在关注之列。</p>
+<p>默认分组： Public Repositories；<br>包含以下仓库：</p>
+<ul>
+<li>3rd party：策略为 realease 的宿主类型仓库，用来部署无法从公共仓库获得的第三方发布版本构件。</li>
+<li>apache snapshots：策略为 shapshot 的代理仓库，目标是 apache maven 仓库的快照版本构件。</li>
+<li>central:该仓库代理 maven 中央库，策略为 release，只会下载和缓存中央仓库中的发布版本构件。</li>
+<li>Codehaus Snapshots：策略为 shapshot 的代理仓库，目标是 Codehaus maven 仓库的快照版本构件。</li>
+<li>releases:策略为 release 的宿主类型仓库，用来部署内部发布版本构件。</li>
+<li>snapshots：策略为 shapshot 的宿主类型仓库，用来部署内部发布的快照版本构件。</li>
+</ul>
+<p>一般情况下，public Repositories 已经足够使用。</p>
+<h2 id="配置-maven"><a href="#配置-maven" class="headerlink" title="配置 maven"></a>配置 maven</h2><p>修改~/.m2/settings.xml，添加：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 把所有的maven请求全部映射到私服 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://ip:8000/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 添加构件私有仓库、 插件私有仓库--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">profiles</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">profile</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url</span>&gt;</span>http://ip:8000/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">releases</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">snapshots</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">pluginRepositories</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url</span>&gt;</span>http://ip:8000/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">releases</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">snapshots</span>&gt;</span><span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span><span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">pluginRepository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pluginRepositories</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">profile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 启用profile --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">activeProfiles</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">activeProfile</span>&gt;</span>nexus<span class="tag">&lt;/<span class="name">activeProfile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activeProfiles</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此时 maven 可以让本机所有项目都从 nexus 下载.</p>
+<h2 id="部署构件到-nexus"><a href="#部署构件到-nexus" class="headerlink" title="部署构件到 nexus"></a>部署构件到 nexus</h2><p>除了代理仓库，宿主仓库的作用是提供内部的构件或者第三方的构件以供使用。</p>
+<h3 id="使用-maven-部署构件"><a href="#使用-maven-部署构件" class="headerlink" title="使用 maven 部署构件"></a>使用 maven 部署构件</h3><p>pom 配置：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">distributionManagement</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-releases<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>nexus-releases<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url</span>&gt;</span>http://0.0.0.0:8000/nexus/content/repositories/thirdparty/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">snapshotRepository</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-snapshots<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">name</span>&gt;</span>nexus-snapshots<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">url</span>&gt;</span>http://0.0.0.0:8000/nexus/content/repositories/thirdparty/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">snapshotRepository</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">distributionManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>nexus 仓库对于匿名用户是只读的，为了能部署构件，还需要在 settings.xml 中配置认证信息：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servers</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-releases<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">password</span>&gt;</span>1<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-snapshots<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">username</span>&gt;</span>admin<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">password</span>&gt;</span>1<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">servers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>项目中 mvn clean deploy 后就会发布到 nexus;</p>
+<h3 id="上传第三方构件"><a href="#上传第三方构件" class="headerlink" title="上传第三方构件"></a>上传第三方构件</h3><p>在 3rd party 中的 artifact upload 中操作：<br>上传时需要确认构件坐标，如果该构件是通过 maven 创建的，在 GAV defintion 中选择 From POM，否则就选择 GAV Parameters。<br>定义好坐标后点击 select artifact（s） to upload 选择要上传的构件，单击 Add artifact 按钮将其加入到上传列表。一次可以上传一个主构件和多个附属构件(classifier)，最后单击 upload artifacts 按钮上传.</p>
+<h2 id="权限"><a href="#权限" class="headerlink" title="权限"></a>权限</h2><p>nexus 基于用户、角色、权限、仓库过滤来实现权限控制。<br>用户可以有多个角色，每个角色拥有多个权限，角色还有上下级包容关系。<br>nexus 内置了许多权限，例如 UI-basic ui privileges（访问界面）、UI-Repository browser（浏览仓库界面）、UI-Search（访问快速搜索栏以及搜索页面）、repo-all repositors（read）（读取所有仓库的权限）、repo-all repositors（full control）（完全控制所有仓库的权限）等。<br>还可以自定权限（增加仓库过滤，即 repositor target，利用正则表达式控制运行访问的特定路径；并指定运行访问的仓库）；</p>
+<p>在 security 中可以设置 ldap（目录服务）、权限（privileges）、角色（roles）、用户（users）。</p>
+<p>另外，在每个仓库的 configuration 中可以设置是否公开 url、是否允许上传之类的设置。</p>
+<h2 id="调度任务"><a href="#调度任务" class="headerlink" title="调度任务"></a>调度任务</h2><p>在 administration–&gt;scheduled task 中可以设置调度任务，调度任务可以完成以下任务：</p>
+<ol>
+<li>downliad indexes：为代理仓库下载索引</li>
+<li>empty trash：清空 nexus 回收站</li>
+<li>backup npm metadata database : 备份 npm 数据库</li>
+<li>download nuget feed：更新 nuget feed</li>
+<li>evict unused proxied items from repository caches :删除代理仓库中长期没用的构件缓存</li>
+<li>expire repository caches：清空代理仓库信息缓存</li>
+<li>optimize repository index：优化仓库索引</li>
+<li>publish index：发布仓库索引为 m2eclipse 等其他格式</li>
+<li>Purge Broken Proxied Rubygems Metadata：清空 Rubygems 中失效的数据</li>
+<li>Purge Nexus Timeline：删除时间线文件（该文件用于生成 rss 源）</li>
+<li>Purge Orphaned API Keys：清除不再引用的 api keys</li>
+<li>Rebuild Hosted Rubygems Metadata Files：重建仓库元数据文件 maven-meta-data.xml，同时创建每个文件的 md5 和 sha1.</li>
+<li>Rebuild NuGet Feed：重建 nuget feed</li>
+<li>Rebuild hosted npm metadata ：重建 npm 元数据</li>
+</ol>
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.
+</div>
+
+	</div>
+
+	
+	<span id="/2015/09/02/%E6%90%AD%E5%BB%BAmaven%E7%A7%81%E6%9C%8D/" class="leancloud-visitors view" data-flag-title="搭建 maven 私服--by nexus">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2020/04/03/centos-7-3/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a type="button" class="btn btn-default disabled">下一页<i class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2015-09-02 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/maven/">maven<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/maven/">maven<span>1</span></a></li> <li><a href="/tags/nexus/">nexus<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 void-soul's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.    
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>

@@ -1,0 +1,363 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>centos 7.3 | King デデデ</title>
+  <meta name="author" content="void-soul">
+  
+  <meta name="description" content="My work log">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="centos 7.3"/>
+  <meta property="og:site_name" content="King デデデ"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="King デデデ" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">King デデデ</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> centos 7.3</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <h2 id="硬盘挂载"><a href="#硬盘挂载" class="headerlink" title="硬盘挂载"></a>硬盘挂载</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">fdisk -ll</span><br><span class="line"># 分区</span><br><span class="line">fdisk &#x2F;dev&#x2F;vdb1</span><br><span class="line"># 输入n，其余选项用默认值</span><br><span class="line"># 格式化</span><br><span class="line">mkfs.ext4 &#x2F;dev&#x2F;vdb1</span><br><span class="line"># 创建挂载文件夹</span><br><span class="line">mkdir &#x2F;data</span><br><span class="line"># 挂载</span><br><span class="line">mount &#x2F;dev&#x2F;vdb1 &#x2F;data</span><br><span class="line"># 开机自动挂载</span><br><span class="line">vi &#x2F;etc&#x2F;fstab</span><br><span class="line"># 加入</span><br><span class="line">&#x2F;dev&#x2F;vdb		&#x2F;data		ext4		defaults	0 0</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-nvm-nodejs-pm2-yarn"><a href="#安装-nvm-nodejs-pm2-yarn" class="headerlink" title="安装 nvm/nodejs/pm2/yarn"></a>安装 nvm/nodejs/pm2/yarn</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 安装nvm</span><br><span class="line">curl -o- https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;creationix&#x2F;nvm&#x2F;v0.35.3&#x2F;install.sh | bash</span><br><span class="line"># 安装node10.2.0,此时nvm不可用时重登陆一次终端即可</span><br><span class="line">nvm install 10.2.0</span><br><span class="line">nvm alias default 10.2.0</span><br><span class="line"># 安装全局pm2</span><br><span class="line">npm install pm2 -g</span><br><span class="line"># 安装yarn</span><br><span class="line">curl --silent --location https:&#x2F;&#x2F;dl.yarnpkg.com&#x2F;rpm&#x2F;yarn.repo | sudo tee &#x2F;etc&#x2F;yum.repos.d&#x2F;yarn.repo</span><br><span class="line">curl --silent --location https:&#x2F;&#x2F;rpm.nodesource.com&#x2F;setup_12.x | bash -</span><br><span class="line">sudo yum install yarn</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装-htop"><a href="#安装-htop" class="headerlink" title="安装 htop"></a>安装 htop</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release -y</span><br><span class="line">yum install htop -y</span><br></pre></td></tr></table></figure>
+
+<h2 id="mysql"><a href="#mysql" class="headerlink" title="mysql"></a>mysql</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 基本环境</span><br><span class="line">yum install -y perl perl-Module-Build net-tools autoconf libaio numactl-libs</span><br><span class="line"># https:&#x2F;&#x2F;dev.mysql.com&#x2F;downloads&#x2F;repo&#x2F;yum&#x2F; 找到linux7的最新源下载地址</span><br><span class="line">wget https:&#x2F;&#x2F;dev.mysql.com&#x2F;get&#x2F;mysql80-community-release-el7-2.noarch.rpm</span><br><span class="line"># 安装mysql源</span><br><span class="line">yum localinstall mysql80-community-release-el7-2.noarch.rpm</span><br><span class="line"># 检查是否安装成功，出现3行红色的状态表示成功；修改vim &#x2F;etc&#x2F;yum.repos.d&#x2F;mysql-community.repo中的enable可以启用、关闭特定版本的mysql源</span><br><span class="line">yum repolist enabled | grep &quot;mysql.*-community.*&quot;</span><br><span class="line"># 开始安装</span><br><span class="line">yum install mysql-community-server</span><br><span class="line"># 如果出现找不到包的情况，说明有系统默认的源被开启，禁用即可,然后再执行安装命令</span><br><span class="line">yum module disable mysql</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><blockquote>
+<p>/etc/my.cnf</p>
+</blockquote>
+<p>注意：这里有一些参数已经是最大值，超过此值 字符串将自动截断</p>
+<p>如：group_concat_max_len</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">[client]</span><br><span class="line">port&#x3D;3308</span><br><span class="line">socket&#x3D;&#x2F;data&#x2F;mysql&#x2F;mysql.sock</span><br><span class="line">[mysql]</span><br><span class="line">no-beep&#x3D;</span><br><span class="line">[mysqld]</span><br><span class="line">port&#x3D;3308</span><br><span class="line">datadir&#x3D;&#x2F;data&#x2F;mysql</span><br><span class="line">default_authentication_plugin&#x3D;mysql_native_password</span><br><span class="line">default-storage-engine&#x3D;INNODB</span><br><span class="line">sql-mode&#x3D;&quot;STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION&quot;</span><br><span class="line">log-output&#x3D;FILE</span><br><span class="line">general-log&#x3D;0</span><br><span class="line">general_log_file&#x3D;general.log</span><br><span class="line">slow-query-log&#x3D;1</span><br><span class="line">slow_query_log_file&#x3D;slow_query.log</span><br><span class="line">long_query_time&#x3D;10</span><br><span class="line">log-error&#x3D;&#x2F;data&#x2F;mysql&#x2F;err.log</span><br><span class="line">server-id&#x3D;1</span><br><span class="line">lower_case_table_names&#x3D;1</span><br><span class="line">max_connections&#x3D;1000</span><br><span class="line">table_open_cache&#x3D;2000</span><br><span class="line">thread_cache_size&#x3D;10</span><br><span class="line">myisam_max_sort_file_size&#x3D;107374182400</span><br><span class="line">myisam_sort_buffer_size&#x3D;713031680</span><br><span class="line">key_buffer_size&#x3D;8388608</span><br><span class="line">read_buffer_size&#x3D;65536</span><br><span class="line">read_rnd_buffer_size&#x3D;256K</span><br><span class="line">innodb_flush_log_at_trx_commit&#x3D;1</span><br><span class="line">innodb_log_buffer_size&#x3D;1048576</span><br><span class="line">innodb_buffer_pool_size&#x3D;1073741824</span><br><span class="line">innodb_log_file_size&#x3D;50331648</span><br><span class="line">innodb_thread_concurrency&#x3D;9</span><br><span class="line">innodb_autoextend_increment&#x3D;64</span><br><span class="line">innodb_buffer_pool_instances&#x3D;8</span><br><span class="line">innodb_concurrency_tickets&#x3D;5000</span><br><span class="line">innodb_old_blocks_time&#x3D;1000</span><br><span class="line">innodb_open_files&#x3D;300</span><br><span class="line">innodb_stats_on_metadata&#x3D;0</span><br><span class="line">innodb_file_per_table&#x3D;1</span><br><span class="line">back_log&#x3D;80</span><br><span class="line">flush_time&#x3D;0</span><br><span class="line">join_buffer_size&#x3D;256K</span><br><span class="line">max_allowed_packet&#x3D;4M</span><br><span class="line">max_connect_errors&#x3D;100</span><br><span class="line">open_files_limit&#x3D;4161</span><br><span class="line">sort_buffer_size&#x3D;256K</span><br><span class="line">table_definition_cache&#x3D;1400</span><br><span class="line">binlog_row_event_max_size&#x3D;8K</span><br><span class="line">sync_master_info&#x3D;10000</span><br><span class="line">sync_relay_log&#x3D;10000</span><br><span class="line">sync_relay_log_info&#x3D;10000</span><br><span class="line">loose_mysqlx_port&#x3D;33080</span><br><span class="line">group_concat_max_len&#x3D;-1</span><br><span class="line">max_allowed_packet&#x3D;104857600</span><br><span class="line">max_heap_table_size&#x3D;1048576000</span><br><span class="line">tmp_table_size&#x3D;524288000</span><br><span class="line">skip-log-bin</span><br><span class="line">socket&#x3D;&#x2F;data&#x2F;mysql&#x2F;mysql.sock</span><br><span class="line">pid-file&#x3D;&#x2F;data&#x2F;mysql&#x2F;mysqld.pid</span><br><span class="line">#skip-grant-tables</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动、停止命令"><a href="#启动、停止命令" class="headerlink" title="启动、停止命令"></a>启动、停止命令</h3><p><code>systemctl start mysqld</code>或<code>service mysqld start</code></p>
+<h3 id="开机自启"><a href="#开机自启" class="headerlink" title="开机自启"></a>开机自启</h3><p><code>systemctl enable mysqld.service</code></p>
+<h3 id="密码修改"><a href="#密码修改" class="headerlink" title="密码修改"></a>密码修改</h3><ol>
+<li>首先在 my.cnf 中打开<code>skip-grant-tables</code></li>
+<li>在终端连接<code>mysql</code></li>
+<li>切换数据库:<code>use mysql;</code></li>
+<li>由于<code>skip-grant-tables</code>，所以在执行任何语句前，执行<code>flush privileges;</code></li>
+<li>修改密码策略:<code>SHOW VARIABLES LIKE &#39;validate_password%&#39;;</code>其中<code>validate_password.policy</code>表示密码检测等级，默认是<code>MEDIUM</code>,将他改为<code>LOW</code>:set global validate_password.policy=LOW;</li>
+<li>先将 root 的密码清空:<code>update user set authentication_string=&#39;&#39;,host=&#39;%&#39; where user=&#39;root&#39;;</code></li>
+<li>修改密码<code>ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;aaabbb&#39;;</code></li>
+<li><code>flush privileges;</code></li>
+<li>打开云服务器的安全组：3308，然后就可以用 navicat 连接了</li>
+</ol>
+<h2 id="mongodb"><a href="#mongodb" class="headerlink" title="mongodb"></a>mongodb</h2><h3 id="源"><a href="#源" class="headerlink" title="源"></a>源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 创建mongodb源文件</span><br><span class="line">vim &#x2F;etc&#x2F;yum.repos.d&#x2F;mongodb-org-4.0.6.repo</span><br></pre></td></tr></table></figure>
+
+<p>文件内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[mongodb-org-4.2]</span><br><span class="line">name&#x3D;MongoDB Repository</span><br><span class="line">baseurl&#x3D;https:&#x2F;&#x2F;repo.mongodb.org&#x2F;yum&#x2F;redhat&#x2F;6&#x2F;mongodb-org&#x2F;4.2&#x2F;x86_64&#x2F;</span><br><span class="line">gpgcheck&#x3D;0</span><br><span class="line">enabled&#x3D;1</span><br><span class="line">gpgkey&#x3D;https:&#x2F;&#x2F;www.mongodb.org&#x2F;static&#x2F;pgp&#x2F;server-4.2.asc</span><br></pre></td></tr></table></figure>
+
+<p>修改 gpgcheck=0, 省去 gpg 验证</p>
+<p>更新系统环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum update</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install mongodb-org</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h3><blockquote>
+<p>/etc/mongod.conf</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">systemLog:</span><br><span class="line">  destination: file</span><br><span class="line">  logAppend: true</span><br><span class="line">  path: &#x2F;data&#x2F;mongo&#x2F;mongod.log</span><br><span class="line"></span><br><span class="line">storage:</span><br><span class="line">  dbPath: &#x2F;data&#x2F;mongo</span><br><span class="line">  journal:</span><br><span class="line">    enabled: true</span><br><span class="line">  WiredTiger:</span><br><span class="line">    cacheSizeGB: 4</span><br><span class="line"></span><br><span class="line">processManagement:</span><br><span class="line">  fork: true  # fork and run in background</span><br><span class="line">  pidFilePath: &#x2F;data&#x2F;mongo&#x2F;mongod.pid  # location of pidfile</span><br><span class="line">  timeZoneInfo: &#x2F;usr&#x2F;share&#x2F;zoneinfo</span><br><span class="line"></span><br><span class="line">net:</span><br><span class="line">  port: 3306</span><br><span class="line">  bindIp: 0.0.0.0  # Enter 0.0.0.0,:: to bind to all IPv4 and IPv6 addresses or, alternatively, use the net.bindIpAll setting.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">security:</span><br><span class="line">  authorization: enabled</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><p><code>systemctl start mongod</code>或<code>service mongod start</code></p>
+<h3 id="开机自启-1"><a href="#开机自启-1" class="headerlink" title="开机自启"></a>开机自启</h3><blockquote>
+<p>无法<code>/sbin/chkconfig mongod on</code>自启！！！因为/dev/null 文件权限每次都会被覆盖</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 777 &#x2F;dev&#x2F;null</span><br><span class="line">systemctl start mongod.service</span><br></pre></td></tr></table></figure>
+
+<h3 id="密码修改-1"><a href="#密码修改-1" class="headerlink" title="密码修改"></a>密码修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 打开终端</span><br><span class="line">mongo --port&#x3D;3306</span><br><span class="line"># 切换数据库</span><br><span class="line">use admin</span><br><span class="line"># 创建用户</span><br><span class="line">db.createUser(&#123;user: &#39;root&#39;, pwd: &#39;123456&#39;, roles: [&#39;root&#39;]&#125;)</span><br><span class="line"># 验证结果</span><br><span class="line">db.auth(用户名，用户密码)</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>Studio 3T</code>连接数据库,创建 database\专门的用户</p>
+<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx"></a>nginx</h2><h3 id="源-1"><a href="#源-1" class="headerlink" title="源"></a>源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install yum-utils</span><br><span class="line">vim &#x2F;etc&#x2F;yum.repos.d&#x2F;nginx.repo</span><br></pre></td></tr></table></figure>
+
+<p>文件内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[nginx-stable]</span><br><span class="line">name&#x3D;nginx stable repo</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;nginx.org&#x2F;packages&#x2F;centos&#x2F;$releasever&#x2F;$basearch&#x2F;</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">enabled&#x3D;1</span><br><span class="line">gpgkey&#x3D;https:&#x2F;&#x2F;nginx.org&#x2F;keys&#x2F;nginx_signing.key</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install nginx</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h3><blockquote>
+<p>/etc/nginx/nginx.conf</p>
+</blockquote>
+<p>略</p>
+<h3 id="执行权限"><a href="#执行权限" class="headerlink" title="执行权限"></a>执行权限</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 如果nginx设置了提交body大小太大，提交的数据会先在 &#96;&#x2F;var&#x2F;lib&#x2F;nginx&#x2F;tmp&#x2F;client_body&#x2F;&#96; 中创建临时文件，然后nginx进程来读取这个文件。</span><br><span class="line"># 但是这种方式安装的nginx，没有读取文件的权限</span><br><span class="line"># 这是nginx进程的用户</span><br><span class="line">ps aux | grep &quot;nginx: worker process&quot; | awk &#39;&#123;print $1&#125;&#39;</span><br><span class="line"># 这是&#96;&#x2F;var&#x2F;lib&#x2F;nginx&#96;的用户</span><br><span class="line">sudo ls -al &#x2F;var&#x2F;lib&#x2F;nginx&#x2F;</span><br><span class="line"># 然后将目录权限进行修改,**注意**，不一定是nobody，可以是nginx进程的其他用户</span><br><span class="line">sudo chown -R nobody:nobody &#x2F;var&#x2F;lib&#x2F;nginx&#x2F;</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动-1"><a href="#启动-1" class="headerlink" title="启动"></a>启动</h3><p><code>systemctl start nginx</code>或<code>service nginx start</code></p>
+<h3 id="开机自启-2"><a href="#开机自启-2" class="headerlink" title="开机自启"></a>开机自启</h3><p><code>systemctl enable nginx.service</code></p>
+<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><h3 id="源-2"><a href="#源-2" class="headerlink" title="源"></a>源</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 基本环境</span><br><span class="line"># 因为center-os的git版本太老，所以使用第三方源库：https:&#x2F;&#x2F;ius.io&#x2F;GettingStarted&#x2F; ，这里找到ius-release对center7的包(因为centeros可以忽略epel-release)</span><br><span class="line"># 下载安装</span><br><span class="line">wget https:&#x2F;&#x2F;centos7.iuscommunity.org&#x2F;ius-release.rpm</span><br><span class="line"># 安装源</span><br><span class="line">rpm -i ius-release.rpm</span><br><span class="line"># 开始安装,git需要在后面追加2u,表示使用刚才源库的地址</span><br><span class="line">yum install git2u</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置-3"><a href="#配置-3" class="headerlink" title="配置"></a>配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
+
+<p>然后进行 clone、pull 等操作，输入一次用户名密码后，以后无需再次输入了</p>
+<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 基本环境</span><br><span class="line"># 因为center-os的redis版本太老，所以使用第三方源库：https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;remi&#x2F; ，这里找到对center8的包</span><br><span class="line"># 下载安装</span><br><span class="line">yum install https:&#x2F;&#x2F;mirrors.tuna.tsinghua.edu.cn&#x2F;remi&#x2F;enterprise&#x2F;remi-release-8.rpm</span><br><span class="line"># 开始安装</span><br><span class="line">yum --enablerepo&#x3D;remi install redis</span><br><span class="line"># 安装之后可以查看创建的文件</span><br><span class="line">rpm -ql redis</span><br><span class="line"># 开机启动</span><br><span class="line">systemctl enable redis.service</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动、停止命令-1"><a href="#启动、停止命令-1" class="headerlink" title="启动、停止命令"></a>启动、停止命令</h3><p><code>service redis start</code>或者<code>systemctl start redis</code></p>
+<h3 id="开机自启-3"><a href="#开机自启-3" class="headerlink" title="开机自启"></a>开机自启</h3><p><code>systemctl enable redis.service</code></p>
+<h3 id="配置-4"><a href="#配置-4" class="headerlink" title="配置"></a>配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;redis.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="java"><a href="#java" class="headerlink" title="java"></a>java</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># 官网找rpm安装包</span><br><span class="line"># java8 https:&#x2F;&#x2F;www.oracle.com&#x2F;technetwork&#x2F;java&#x2F;javase&#x2F;downloads&#x2F;jdk8-downloads-2133151.html</span><br><span class="line"># 最新 https:&#x2F;&#x2F;www.oracle.com&#x2F;technetwork&#x2F;java&#x2F;javase&#x2F;downloads&#x2F;index.html</span><br><span class="line"># 将安装包上传到服务器</span><br><span class="line"></span><br><span class="line"># 检查是否有旧版java、openjdk</span><br><span class="line"></span><br><span class="line">rpm -qa | grep java</span><br><span class="line"></span><br><span class="line"># 如果有则卸载,例如上面命令输出</span><br><span class="line"></span><br><span class="line">tzdata-java-2014i-1.el7.noarch</span><br><span class="line">java-1.7.0-openjdk-headless-1.7.0.71-2.5.3.1.el7_0.x86_64</span><br><span class="line">java-1.7.0-openjdk-1.7.0.71-2.5.3.1.el7_0.x86_64</span><br><span class="line"></span><br><span class="line"># 表示有3个java需要卸载:</span><br><span class="line"></span><br><span class="line">rpm -e --nodeps tzdata-java-2014i-1.el7.noarch</span><br><span class="line">rpm -e --nodeps java-1.7.0-openjdk-headless-1.7.0.71-2.5.3.1.el7_0.x86_64</span><br><span class="line">rpm -e --nodeps java-1.7.0-openjdk-1.7.0.71-2.5.3.1.el7_0.x86_64</span><br><span class="line"></span><br><span class="line"># 安装</span><br><span class="line"></span><br><span class="line">rpm -ivh jdk-8u191-linux-x64.rpm</span><br><span class="line"></span><br><span class="line"># 配置环境变量：</span><br><span class="line"></span><br><span class="line">vim &#x2F;etc&#x2F;profile</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 添加内容：</span><br><span class="line"></span><br><span class="line">export JAVA_HOME&#x3D;&#x2F;usr&#x2F;java&#x2F;default</span><br><span class="line">export PATH&#x3D;$JAVA_HOME&#x2F;bin:$PATH</span><br><span class="line">export CLASSPATH&#x3D;.:$JAVA_HOME&#x2F;lib&#x2F;dt.jar:$JAVA_HOME&#x2F;lib&#x2F;tools.jar</span><br><span class="line"></span><br><span class="line"># 使配置生效</span><br><span class="line"></span><br><span class="line">source &#x2F;etc&#x2F;profile</span><br></pre></td></tr></table></figure>
+
+<h1 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a>内存优化</h1><h2 id="交换内存"><a href="#交换内存" class="headerlink" title="交换内存"></a>交换内存</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"># 查看Swap 分区大小</span><br><span class="line">free -m</span><br><span class="line"># 创建目录</span><br><span class="line">mkdir &#x2F;swap</span><br><span class="line">cd &#x2F;swap</span><br><span class="line"># count单位是KB</span><br><span class="line">sudo dd if&#x3D;&#x2F;dev&#x2F;zero of&#x3D;swapfile bs&#x3D;1024 count&#x3D;2000000</span><br><span class="line"># 转换文件为swap文件</span><br><span class="line">sudo mkswap -f swapfile</span><br><span class="line"># 激活文件</span><br><span class="line">sudo swapon swapfile</span><br><span class="line"># 反激活文件</span><br><span class="line">sudo swapoff swapfile</span><br><span class="line"># 永久保持此空间</span><br><span class="line">vi &#x2F;etc&#x2F;fstab</span><br><span class="line"># 加入</span><br><span class="line">&#x2F;swap&#x2F;swapfile &#x2F;swap swap defaults 0 0</span><br><span class="line"></span><br><span class="line"># 虚拟内存与物理内存关系</span><br><span class="line">cat &#x2F;proc&#x2F;sys&#x2F;vm&#x2F;swappiness</span><br><span class="line"></span><br><span class="line"># 此值越大，表示越依赖虚拟内存，取值0-100</span><br><span class="line"># 临时修改</span><br><span class="line">sysctl vm.swappiness&#x3D;10</span><br><span class="line"># 永久修改</span><br><span class="line">vi &#x2F;etc&#x2F;sysctl.conf</span><br><span class="line"># 加入</span><br><span class="line">vm.swappiness&#x3D;20</span><br></pre></td></tr></table></figure>
+
+<h2 id="交换内存的大小"><a href="#交换内存的大小" class="headerlink" title="交换内存的大小"></a>交换内存的大小</h2><ol>
+<li>原则上是物理内存的 2 倍</li>
+<li>规则 1：物理内存小于 2G=2 倍到 3 倍，2G-8G=1 倍到 2 倍，8-64G=4G 到 1.5 倍 64G 以上=4G 以上</li>
+<li></li>
+</ol>
+<h2 id="用户限制"><a href="#用户限制" class="headerlink" title="用户限制"></a>用户限制</h2><h3 id="查看当前设置"><a href="#查看当前设置" class="headerlink" title="查看当前设置"></a>查看当前设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">ulimit -a</span><br><span class="line"># 设定core文件的最大值，单位为区块。</span><br><span class="line">core file size          (blocks, -c) unlimited</span><br><span class="line"># 程序数据节区的最大值，单位为KB。</span><br><span class="line">data seg size           (kbytes, -d) unlimited</span><br><span class="line">scheduling priority             (-e) 0</span><br><span class="line"># **重要**</span><br><span class="line">file size               (blocks, -f) unlimited</span><br><span class="line">pending signals                 (-i) 31129</span><br><span class="line">max locked memory       (kbytes, -l) 16384</span><br><span class="line"># **重要**</span><br><span class="line">max memory size         (kbytes, -m) unlimited</span><br><span class="line"># **重要**</span><br><span class="line">open files                      (-n) 65535</span><br><span class="line">pipe size            (512 bytes, -p) 8</span><br><span class="line">POSIX message queues     (bytes, -q) 819200</span><br><span class="line">real-time priority              (-r) 0</span><br><span class="line"># **重要**</span><br><span class="line">stack size              (kbytes, -s) 8192</span><br><span class="line">cpu time               (seconds, -t) unlimited</span><br><span class="line"># **重要**</span><br><span class="line">max user processes              (-u) 31129</span><br><span class="line">virtual memory          (kbytes, -v) unlimited</span><br><span class="line">file locks                      (-x) unlimited</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改进程数"><a href="#修改进程数" class="headerlink" title="修改进程数"></a>修改进程数</h3><p><code>vi /etc/security/limits.d/90-nproc.conf</code></p>
+<h3 id="修改可打开的最大文件数"><a href="#修改可打开的最大文件数" class="headerlink" title="修改可打开的最大文件数"></a>修改可打开的最大文件数</h3><p><code>vi /etc/security/limits.conf</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 开启任务</span><br><span class="line">nohup 命令 &gt; log.log  2&gt;&amp;1 &amp;</span><br><span class="line"># 任务列表</span><br><span class="line">jobs</span><br><span class="line"># 关闭</span><br><span class="line"></span><br><span class="line">gb %n</span><br></pre></td></tr></table></figure>
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.
+</div>
+
+	</div>
+
+	
+	<span id="/2020/04/03/centos-7-3/" class="leancloud-visitors view" data-flag-title="centos 7.3">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2020/04/03/nodejs-windows原生模块编译/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2015/09/02/搭建maven私服/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2020-04-03 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/运维/">运维<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/mongodb/">mongodb<span>2</span></a></li> <li><a href="/tags/nodejs/">nodejs<span>2</span></a></li> <li><a href="/tags/mysql/">mysql<span>2</span></a></li> <li><a href="/tags/centos/">centos<span>1</span></a></li> <li><a href="/tags/nginx/">nginx<span>1</span></a></li> <li><a href="/tags/redis/">redis<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 void-soul's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.    
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>
