@@ -6,7 +6,7 @@
   <meta http-equiv="cache-control" content="no-cache">
   <meta http-equiv="expires" content="0">
   
-  <title>mongodb备份还原 | King デデデ</title>
+  <title>函数 | King デデデ</title>
   <meta name="author" content="void-soul">
   
   <meta name="description" content="My work log">
@@ -14,7 +14,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="mongodb备份还原"/>
+  
   <meta property="og:site_name" content="King デデデ"/>
 
   
@@ -93,135 +93,149 @@
   	<div class="content">
     	 
 
+<!-- title -->
+<div class="page-header">
+  <h1 class="archive-title-tag"><i class="fa fa-archive"></i> 函数</h1>
+</div>
 
+<div class="row page">
+  <!-- cols -->
+  
+  <div class="col-md-9">
 	
-		<div class="page-header">
-			<h1> mongodb备份还原</h1>
+
+	  <div id="top_search"></div>
+
+	  <div class="archive">
+		
+		
+		
+			
+			
+			<h4 class="archive-ul" data-toggle="collapse" data-target="#2020">2020<b class="caret"></b></h4>
+			<ul id="2020" class="collapse in">
+			
+		
+		<li class="listing-item">
+		<span class="date_class"> 2020-04-03 </span> &raquo;
+		
+		   <span class="title"><a href="/2020/04/03/mysql函数/" >mysql函数大全</a></span>
+		
+		</li>			
+		
+		</ul>
 		</div>
+
+</div> <!-- col-md-9/col-md-12 -->
+
+
+<div class="col-md-3">
+	<div id="sidebar">
 	
+			
+  <div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="搜索" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div>
 
 
+		
+			
+	<div class="widget">
+		<h4>分类</h4>
+		<ul class="tag_box inline list-unstyled">
+		
+			<li><a href="/categories/NodeJs/">NodeJs<span>1</span></a></li>
+		
+			<li><a href="/categories/运维/mongodb/">mongodb<span>1</span></a></li>
+		
+			<li><a href="/categories/mysql/">mysql<span>1</span></a></li>
+		
+			<li><a href="/categories/运维/mysql/">mysql<span>1</span></a></li>
+		
+			<li><a href="/categories/运维/">运维<span>4</span></a></li>
+		
+		</ul>
+	</div>
 
-<div class="row post">
-	<!-- cols -->
-	
-	<div id="top_meta"></div>
-	<div class="col-md-9">
-	
+		
+			
+	<div class="widget">
+		<h4>标签云</h4>
+		<ul class="tag_box inline list-unstyled">		
+		
+			<li><a href="/tags/mysql/">mysql<span>3</span></a></li>
+		
+			<li><a href="/tags/函数/">函数<span>1</span></a></li>
+		
+			<li><a href="/tags/nodejs/">nodejs<span>2</span></a></li>
+		
+			<li><a href="/tags/windows-build/">windows-build<span>1</span></a></li>
+		
+			<li><a href="/tags/nginx/">nginx<span>1</span></a></li>
+		
+			<li><a href="/tags/centos/">centos<span>1</span></a></li>
+		
+			<li><a href="/tags/docker/">docker<span>1</span></a></li>
+		
+			<li><a href="/tags/redis/">redis<span>1</span></a></li>
+		
+			<li><a href="/tags/mongodb/">mongodb<span>2</span></a></li>
+		
+		 
+		</ul>
+	</div>
 
-	<!-- content -->
-	<div class="mypage">		
-	  		
 
-	  <h1 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">filename&#x3D;&#96;date +%Y-%m-%d-%H-%M-%S.zip&#96;;</span><br><span class="line">mongodump --host 127.0.0.1:3306 -u root -p &quot;password&quot; --authenticationDatabase admin -d dmce -o &#x2F;data&#x2F;mongo-dump&#x2F;$&#123;filename&#125;</span><br><span class="line">zip -q -r $&#123;filename&#125;.zip &#x2F;data&#x2F;mongo-dump&#x2F;$&#123;filename&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="还原"><a href="#还原" class="headerlink" title="还原"></a>还原</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongorestore --host 127.0.0.1:3306 --drop --username root --password &quot;password&quot; --authenticationDatabase admin --db dmce &#x2F;data&#x2F;data&#x2F;mongo-dump&#x2F;2&#x2F;dmce</span><br></pre></td></tr></table></figure>
-
-	  <div class="article-footer-copyright">
-
-    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.
+		
+			
+<div class="widget">
+  <h4>最新文章</h4>
+  <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2020/04/03/docker部署node全栈/" ><i class="fa fa-file-o"></i>docker部署node全栈</a>
+      </li>
+    
+      <li>
+        <a href="/2020/04/03/mongo备份还原/" ><i class="fa fa-file-o"></i>mongodb备份还原</a>
+      </li>
+    
+      <li>
+        <a href="/2020/04/03/mysql函数/" ><i class="fa fa-file-o"></i>mysql函数大全</a>
+      </li>
+    
+      <li>
+        <a href="/2020/04/03/mysql备份还原/" ><i class="fa fa-file-o"></i>mysql备份还原</a>
+      </li>
+    
+      <li>
+        <a href="/2020/04/03/nodejs-windows原生模块编译/" ><i class="fa fa-file-o"></i>nodejs windows原生模块编译</a>
+      </li>
+    
+  </ul>
 </div>
 
-	</div>
-
+		
+			
+<div class="widget">
+	<h4>链接</h4>
+	<ul class="blogroll list-unstyled">
 	
-	<span id="/2020/04/03/mongo%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F/" class="leancloud-visitors view" data-flag-title="mongodb备份还原">
-		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
-	</span>
+		<li><i class="false"></i><a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" title="PowerBy theme-bithack" target="_blank"]);">hexo-theme-bithack</a></li>
 	
-	<div>
-  	<center>
-
-	<div class="pagination">
-
-    
-    
-    <a href="/2020/04/03/docker部署node全栈/" type="button" class="btn btn-default"><i
-                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
-    
-
-    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
-    
-    <a href="/2020/04/03/mysql函数/" type="button" class="btn btn-default ">下一页<i
-                class="fa fa-arrow-circle-o-right"></i></a>
-    
-
-    
+		<li><i class="fa fa-github"></i><a href="https://github.com/void-soul" title="My GitHub" target="_blank"]);">My GitHub</a></li>
+	
+	</ul>
 </div>
 
 
-    </center>
-	</div>
-	
-	<!-- comment -->
-	<!--
-<section id="comment">
-    <h2 class="title">留言</h2>
-
-    
-</section>
-
--->
-	
-	</div> <!-- col-md-9/col-md-12 -->
-
-
-	
-	<div id="side_meta">
-		<div class="col-md-3" id="post_meta"> 
-
-	<!-- date -->
-	
-	<div class="meta-widget">
-	<i class="fa fa-clock-o"></i>
-	2020-04-03 
-	</div>
-	
-
-	<!-- categories -->
-    
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
-    <ul id="categorys" class="tag_box list-unstyled collapse in">
-          
-  <li>
-    <li><a href="/categories/运维/">运维<span>4</span></a></li> <li><a href="/categories/运维/mongodb/">mongodb<span>1</span></a></li>
-  </li>
-
-    </ul>
-	</div>
-	
-
-	<!-- tags -->
-	
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
-    <ul id="tags" class="tag_box list-unstyled collapse in">	  
-	    
-  <li><a href="/tags/mongodb/">mongodb<span>2</span></a></li>
-    </ul>
-	</div>
 		
+	</div> <!-- sidebar -->
+</div> <!-- col-md-3 -->
 
-	<!-- toc -->
-	<div class="meta-widget">
-	
-	</div>
-	
-    <hr>
-	
-</div><!-- col-md-3 -->
-
-		
-
-	</div>
-	
-		
-
-</div><!-- row -->
-
-<!--
- -->
 
 
 

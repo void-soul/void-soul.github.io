@@ -1,0 +1,360 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>mysql函数大全 | King デデデ</title>
+  <meta name="author" content="void-soul">
+  
+  <meta name="description" content="My work log">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="mysql函数大全"/>
+  <meta property="og:site_name" content="King デデデ"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="King デデデ" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">King デデデ</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> mysql函数大全</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  		
+
+	  <blockquote>
+<p>使用数据库版本：mysql 8.x</p>
+</blockquote>
+<h1 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h1><h2 id="表结构"><a href="#表结构" class="headerlink" title="表结构"></a>表结构</h2><h3 id="班级-t-class"><a href="#班级-t-class" class="headerlink" title="班级 t_class"></a>班级 t_class</h3><table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>类型</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>class_id</td>
+<td>int</td>
+<td>班级主键</td>
+</tr>
+<tr>
+<td>class_name</td>
+<td>varchar(32)</td>
+<td>班级名称</td>
+</tr>
+</tbody></table>
+<h3 id="学生表-t-student"><a href="#学生表-t-student" class="headerlink" title="学生表 t_student"></a>学生表 t_student</h3><table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>类型</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>student_id</td>
+<td>int</td>
+<td>学生主键</td>
+</tr>
+<tr>
+<td>student_name</td>
+<td>varchar(32)</td>
+<td>学生姓名</td>
+</tr>
+<tr>
+<td>class_id</td>
+<td>int</td>
+<td>所在班级主键</td>
+</tr>
+</tbody></table>
+<h3 id="科目-t-subject"><a href="#科目-t-subject" class="headerlink" title="科目 t_subject"></a>科目 t_subject</h3><table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>类型</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>subject_id</td>
+<td>int</td>
+<td>科目主键</td>
+</tr>
+<tr>
+<td>subject_name</td>
+<td>varchar(32)</td>
+<td>科目姓名</td>
+</tr>
+</tbody></table>
+<h3 id="成绩-t-score"><a href="#成绩-t-score" class="headerlink" title="成绩 t_score"></a>成绩 t_score</h3><table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>类型</th>
+<th>注释</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>subject_id</td>
+<td>int</td>
+<td>科目主键</td>
+</tr>
+<tr>
+<td>student_id</td>
+<td>int</td>
+<td>学生主键</td>
+</tr>
+<tr>
+<td>subject_score</td>
+<td>int</td>
+<td>成绩</td>
+</tr>
+</tbody></table>
+<h2 id="Sql"><a href="#Sql" class="headerlink" title="Sql"></a>Sql</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">-- ----------------------------</span><br><span class="line">-- Table structure for t_class</span><br><span class="line">-- ----------------------------</span><br><span class="line">DROP TABLE IF EXISTS &#96;t_class&#96;;</span><br><span class="line">CREATE TABLE &#96;t_class&#96;  (</span><br><span class="line">  &#96;class_id&#96; int(11) NOT NULL COMMENT &#39;班级主键&#39;,</span><br><span class="line">  &#96;class_name&#96; varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT &#39;班级名称&#39;,</span><br><span class="line">  PRIMARY KEY (&#96;class_id&#96;) USING BTREE</span><br><span class="line">) ENGINE &#x3D; InnoDB CHARACTER SET &#x3D; utf8mb4 COLLATE &#x3D; utf8mb4_general_ci ROW_FORMAT &#x3D; Dynamic;</span><br><span class="line"></span><br><span class="line">-- ----------------------------</span><br><span class="line">-- Records of t_class</span><br><span class="line">-- ----------------------------</span><br><span class="line">INSERT INTO &#96;t_class&#96; VALUES (1, &#39;1班&#39;);</span><br><span class="line">INSERT INTO &#96;t_class&#96; VALUES (2, &#39;2班&#39;);</span><br><span class="line">INSERT INTO &#96;t_class&#96; VALUES (3, &#39;3班&#39;);</span><br><span class="line"></span><br><span class="line">-- ----------------------------</span><br><span class="line">-- Table structure for t_score</span><br><span class="line">-- ----------------------------</span><br><span class="line">DROP TABLE IF EXISTS &#96;t_score&#96;;</span><br><span class="line">CREATE TABLE &#96;t_score&#96;  (</span><br><span class="line">  &#96;subject_id&#96; int(11) NULL DEFAULT NULL COMMENT &#39;科目主键&#39;,</span><br><span class="line">  &#96;student_id&#96; int(11) NULL DEFAULT NULL COMMENT &#39;学生主键&#39;,</span><br><span class="line">  &#96;subject_score&#96; int(11) NULL DEFAULT NULL COMMENT &#39;成绩&#39;</span><br><span class="line">) ENGINE &#x3D; InnoDB CHARACTER SET &#x3D; utf8mb4 COLLATE &#x3D; utf8mb4_general_ci ROW_FORMAT &#x3D; Dynamic;</span><br><span class="line"></span><br><span class="line">-- ----------------------------</span><br><span class="line">-- Records of t_score</span><br><span class="line">-- ----------------------------</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (1, 1, 67);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (1, 2, 88);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (1, 3, 69);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (1, 4, 89);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (1, 5, 92);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (1, 6, 69);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (1, 8, 75);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (1, 9, 72);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (1, 10, 78);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (2, 1, 84);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (2, 2, 96);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (2, 3, 76);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (2, 4, 89);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (2, 5, 90);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (2, 6, 81);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (2, 8, 76);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (2, 9, 77);</span><br><span class="line">INSERT INTO &#96;t_score&#96; VALUES (2, 10, 79);</span><br><span class="line"></span><br><span class="line">-- ----------------------------</span><br><span class="line">-- Table structure for t_student</span><br><span class="line">-- ----------------------------</span><br><span class="line">DROP TABLE IF EXISTS &#96;t_student&#96;;</span><br><span class="line">CREATE TABLE &#96;t_student&#96;  (</span><br><span class="line">  &#96;student_id&#96; int(11) NOT NULL COMMENT &#39;学生主键&#39;,</span><br><span class="line">  &#96;student_name&#96; varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT &#39;学生姓名&#39;,</span><br><span class="line">  &#96;class_id&#96; int(11) NULL DEFAULT NULL COMMENT &#39;所在班级主键&#39;,</span><br><span class="line">  PRIMARY KEY (&#96;student_id&#96;) USING BTREE</span><br><span class="line">) ENGINE &#x3D; InnoDB CHARACTER SET &#x3D; utf8mb4 COLLATE &#x3D; utf8mb4_general_ci ROW_FORMAT &#x3D; Dynamic;</span><br><span class="line"></span><br><span class="line">-- ----------------------------</span><br><span class="line">-- Records of t_student</span><br><span class="line">-- ----------------------------</span><br><span class="line">INSERT INTO &#96;t_student&#96; VALUES (1, &#39;张一&#39;, 1);</span><br><span class="line">INSERT INTO &#96;t_student&#96; VALUES (2, &#39;李二&#39;, 1);</span><br><span class="line">INSERT INTO &#96;t_student&#96; VALUES (3, &#39;牛三&#39;, 1);</span><br><span class="line">INSERT INTO &#96;t_student&#96; VALUES (4, &#39;马四&#39;, 2);</span><br><span class="line">INSERT INTO &#96;t_student&#96; VALUES (5, &#39;刘六&#39;, 2);</span><br><span class="line">INSERT INTO &#96;t_student&#96; VALUES (6, &#39;孙七&#39;, 2);</span><br><span class="line">INSERT INTO &#96;t_student&#96; VALUES (8, &#39;郝八&#39;, 2);</span><br><span class="line">INSERT INTO &#96;t_student&#96; VALUES (9, &#39;李九&#39;, 3);</span><br><span class="line">INSERT INTO &#96;t_student&#96; VALUES (10, &#39;郭十&#39;, 3);</span><br><span class="line"></span><br><span class="line">-- ----------------------------</span><br><span class="line">-- Table structure for t_subject</span><br><span class="line">-- ----------------------------</span><br><span class="line">DROP TABLE IF EXISTS &#96;t_subject&#96;;</span><br><span class="line">CREATE TABLE &#96;t_subject&#96;  (</span><br><span class="line">  &#96;subject_id&#96; int(11) NOT NULL COMMENT &#39;科目主键&#39;,</span><br><span class="line">  &#96;subject_name&#96; varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT &#39;科目姓名&#39;,</span><br><span class="line">  PRIMARY KEY (&#96;subject_id&#96;) USING BTREE</span><br><span class="line">) ENGINE &#x3D; InnoDB CHARACTER SET &#x3D; utf8mb4 COLLATE &#x3D; utf8mb4_general_ci ROW_FORMAT &#x3D; Dynamic;</span><br><span class="line"></span><br><span class="line">-- ----------------------------</span><br><span class="line">-- Records of t_subject</span><br><span class="line">-- ----------------------------</span><br><span class="line">INSERT INTO &#96;t_subject&#96; VALUES (1, &#39;语文&#39;);</span><br><span class="line">INSERT INTO &#96;t_subject&#96; VALUES (2, &#39;计算机&#39;);</span><br></pre></td></tr></table></figure>
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.
+</div>
+
+	</div>
+
+	
+	<span id="/2020/04/03/mysql%E5%87%BD%E6%95%B0/" class="leancloud-visitors view" data-flag-title="mysql函数大全">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2020/04/03/mongo备份还原/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> 上一页</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2020/04/03/mysql备份还原/" type="button" class="btn btn-default ">下一页<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">留言</h2>
+
+    
+</section>
+
+-->
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2020-04-03 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/mysql/">mysql<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/mysql/">mysql<span>3</span></a></li> <li><a href="/tags/函数/">函数<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2020 void-soul's Blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.    
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+   <script type="text/javascript">      
+     var search_path = "search.xml";
+	 if (search_path.length == 0) {
+	 	search_path = "search.xml";
+	 }
+	 var path = "/" + search_path;
+     searchFunc(path, 'local-search-input', 'local-search-result');
+   </script>
+
+</body>
+   </html>
