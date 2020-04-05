@@ -1,13 +1,11 @@
+---
 title: 搭建 maven 私服--by nexus
 date: 2015-09-02 09:42:02
-categories: maven
 tags:
-
-- maven
-- nexus
-
+  - maven
+  - nexus
+categories: java
 description: nexus 可以代替 maven 的中央仓库，在其中发布内部模块、代理中央仓库，并可以分组管理模块。
-
 ---
 
 # 下载安装

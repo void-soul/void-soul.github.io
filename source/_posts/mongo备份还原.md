@@ -2,6 +2,7 @@
 title: mongodb备份还原
 date: 2020-04-03 17:13:26
 tags: mongodb
+categories: 数据库
 ---
 
 # 备份

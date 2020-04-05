@@ -2,8 +2,9 @@
 title: nodejs windows原生模块编译
 date: 2020-04-03 17:08:39
 tags:
-  - nodejs
+  - NodeJs
   - windows-build
+categories: NodeJs
 ---
 
 ## 安装编译工具

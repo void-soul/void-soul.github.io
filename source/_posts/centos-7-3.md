@@ -1,18 +1,15 @@
-title: centos 7.3
+---
+title: centos 7.3 从零开始搭建生产环境
 date: 2020-04-03 16:30:23
 tags:
-
-- centos
-- nginx
-- mysql
-- nodejs
-- redis
-- mongodb
-
-categories:
-
-- 运维
-
+  - centos
+  - nginx
+  - mysql
+  - NodeJs
+  - redis
+  - mongodb
+categories: linux
+description: centos 7.3 从零开始搭建生产环境
 ---
 
 ## 硬盘挂载
