@@ -167,7 +167,7 @@
 <div class="row">
 	<div class="col-md-8">
 		<h3 class="title">
-			<a href="/2020/04/03/docker部署node全栈/" title="使用docker部署eggjs、mysql、mongodb">docker部署node全栈</a>
+			<a href="/2020/04/03/docker部署node全栈/" title="低配服务器中使用docker隔离运行环境，达到一台变多台的效果">docker部署eggjs实战</a>
 		</h3>
 		</div>
 	<div class="col-md-4">
@@ -182,13 +182,14 @@
   <div class="row">
 	
 	
-
-		
-        
-            
-            
-		
-
+		<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><p><code>mysql8.x</code>、<code>mongodb4.2.x</code>、<code>eggjs服务</code>、文件服务、若干 nginx 映射静态服务</p>
+<h2 id="数据量"><a href="#数据量" class="headerlink" title="数据量"></a>数据量</h2><p>mongodb:40G+<br>mysql: 50G+</p>
+<p>mysql 中涉及大量 CPU 密集计算，内存占用也很高<br>eggjs 有一些定时服务，耗时长、内存高（上传数据到亚马逊、从物流公司抓取轨迹等）</p>
+<h2 id="硬件条件"><a href="#硬件条件" class="headerlink" title="硬件条件"></a>硬件条件</h2><p>服务器 x 1=阿里云 C5,4U8G</p>
+<blockquote>
+<p>其实还买过一台 t5(1U2G)运行数据库,一台 mn4(2U8G)运行 egg 服务、文件服务、nginx。但是这些服务器都是共享计算型，CPU 的计算消耗积分，每小时计算能力及其有限。在正式的环境中根本不够看，所以更换了一台 C5（成本所限，不能随心所欲）</p>
+</blockquote>
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2>
 	
 
 	</div>
@@ -200,7 +201,14 @@
   <div class="row">
 	
 	
-		
+		<h1 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h1><h2 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h2><p><code>mysql8.x</code>、<code>mongodb4.2.x</code>、<code>eggjs服务</code>、文件服务、若干 nginx 映射静态服务</p>
+<h2 id="数据量"><a href="#数据量" class="headerlink" title="数据量"></a>数据量</h2><p>mongodb:40G+<br>mysql: 50G+</p>
+<p>mysql 中涉及大量 CPU 密集计算，内存占用也很高<br>eggjs 有一些定时服务，耗时长、内存高（上传数据到亚马逊、从物流公司抓取轨迹等）</p>
+<h2 id="硬件条件"><a href="#硬件条件" class="headerlink" title="硬件条件"></a>硬件条件</h2><p>服务器 x 1=阿里云 C5,4U8G</p>
+<blockquote>
+<p>其实还买过一台 t5(1U2G)运行数据库,一台 mn4(2U8G)运行 egg 服务、文件服务、nginx。但是这些服务器都是共享计算型，CPU 的计算消耗积分，每小时计算能力及其有限。在正式的环境中根本不够看，所以更换了一台 C5（成本所限，不能随心所欲）</p>
+</blockquote>
+<h2 id="要求"><a href="#要求" class="headerlink" title="要求"></a>要求</h2>
 	
 	</div>
   <a type="button" href="/2020/04/03/docker部署node全栈/#more" class="btn btn-default more">阅读此文</a>
@@ -673,27 +681,27 @@
 		<h4>标签云</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/mysql/">mysql<span>3</span></a></li>
-		
-			<li><a href="/tags/centos/">centos<span>1</span></a></li>
-		
-			<li><a href="/tags/windows-build/">windows-build<span>1</span></a></li>
-		
 			<li><a href="/tags/maven/">maven<span>1</span></a></li>
-		
-			<li><a href="/tags/NodeJs/">NodeJs<span>2</span></a></li>
-		
-			<li><a href="/tags/mongodb/">mongodb<span>2</span></a></li>
-		
-			<li><a href="/tags/nginx/">nginx<span>1</span></a></li>
-		
-			<li><a href="/tags/redis/">redis<span>1</span></a></li>
 		
 			<li><a href="/tags/docker/">docker<span>1</span></a></li>
 		
-			<li><a href="/tags/函数/">函数<span>1</span></a></li>
+			<li><a href="/tags/redis/">redis<span>1</span></a></li>
+		
+			<li><a href="/tags/NodeJs/">NodeJs<span>2</span></a></li>
+		
+			<li><a href="/tags/mysql/">mysql<span>3</span></a></li>
 		
 			<li><a href="/tags/nexus/">nexus<span>1</span></a></li>
+		
+			<li><a href="/tags/nginx/">nginx<span>1</span></a></li>
+		
+			<li><a href="/tags/windows-build/">windows-build<span>1</span></a></li>
+		
+			<li><a href="/tags/centos/">centos<span>1</span></a></li>
+		
+			<li><a href="/tags/函数/">函数<span>1</span></a></li>
+		
+			<li><a href="/tags/mongodb/">mongodb<span>2</span></a></li>
 		
 		 
 		</ul>
@@ -711,7 +719,7 @@
       </li>
     
       <li>
-        <a href="/2020/04/03/docker部署node全栈/"  title="使用docker部署eggjs、mysql、mongodb" ><i class="fa fa-file-o"></i>docker部署node全栈</a>
+        <a href="/2020/04/03/docker部署node全栈/"  title="低配服务器中使用docker隔离运行环境，达到一台变多台的效果" ><i class="fa fa-file-o"></i>docker部署eggjs实战</a>
       </li>
     
       <li>
