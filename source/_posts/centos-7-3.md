@@ -35,7 +35,7 @@ vi /etc/fstab
 
 ```
 # 安装nvm
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh | bash
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.39.5/install.sh | bash
 # 安装node10.2.0,此时nvm不可用时重登陆一次终端即可
 nvm install 10.2.0
 nvm alias default 10.2.0
@@ -56,12 +56,34 @@ yum install htop -y
 
 ## mysql
 
+### 卸载
+
+```
+//rpm包安装方式卸载
+查包名：rpm -qa|grep -i mysql
+删除命令：rpm -e –nodeps 包名
+
+//yum安装方式下载
+1.查看已安装的mysql
+命令：rpm -qa | grep -i mysql
+2.卸载mysql
+命令：yum remove mysql-community-server-5.6.36-2.el7.x86_64
+查看mysql的其它依赖：rpm -qa | grep -i mysql
+
+//卸载依赖
+yum remove mysql-libs
+yum remove mysql-server
+yum remove perl-DBD-MySQL
+yum remove mysql
+```
+
 ### 安装
 
 ```
 # 基本环境
 yum install -y perl perl-Module-Build net-tools autoconf libaio numactl-libs
 # https://dev.mysql.com/downloads/repo/yum/ 找到linux7的最新源下载地址
+# https://repo.mysql.com/yum/ 找到老版本
 wget https://dev.mysql.com/get/mysql80-community-release-el7-2.noarch.rpm
 # 安装mysql源
 yum localinstall mysql80-community-release-el7-2.noarch.rpm
