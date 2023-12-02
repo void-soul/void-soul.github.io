@@ -2,9 +2,9 @@
 esp_toml_version = 1.0
 firmware_images_url = "https://void-soul.github.io/esp_smart_light_controller/bin/"
 
-supported_apps = ["switch_xx"]
+supported_apps = ["switch_1"]
 
-[switch_xx]
+[switch_1]
 chipsets = ["ESP32C3",]
 image.esp32c3 = "esp_smart_light_controller.bin"
 ios_app_url = "https://apps.apple.com/app/esp-rainmaker/id1497491540"
